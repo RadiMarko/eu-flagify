@@ -5,6 +5,9 @@ import Button from "./Components/Button.jsx";
 
 function App() {
     
+    // DECLARING STATE VARIABLE FOR THE CURRENTLY PICKED FLAG
+    const [pickedFlag, setPickedFlag] = useState();
+    
     // DECLARING ARRAY OF FLAG IMAGE PATHS
     const [flagArray, setFlagArray] = useState([
         "/albania.svg",
@@ -64,7 +67,7 @@ function App() {
         "/wales.svg"
     ])
     
-    // FUNCTION FOR PICKING RANDOM FLAG AND REMOVING IT FROM THE ARRAY OF FLAGS
+    // FUNCTION FOR PICKING RANDOM FLAG AND REMOVING IT FROM THE ARRAY OF FLAGS, THEN SETTING FLAG STATE VARIABLE
     function pickRandomIndex() {
         setFlagArray((prevFlagArray) => {
             
@@ -81,13 +84,16 @@ function App() {
             
             console.log(`New flag array with a length of ${newFlagArray.length} (about to be set):\n${newFlagArray}`);
             
+            // Setting the state variable of the currently selected flag
+            setPickedFlag(selectedFlag)
+            
             return newFlagArray;
         })
     }
     
     return (
         <>
-            <FlagDisplay displayedFlag={"/bulgaria.svg"} />
+            <FlagDisplay displayedFlag={pickedFlag} />
             <Button pickRandomIndex={pickRandomIndex}></Button>
         </>
     )
