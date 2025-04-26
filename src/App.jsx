@@ -4,20 +4,11 @@ import FlagDisplay from "./Components/FlagDisplay.jsx";
 import StartButton from "./Components/StartButton.jsx";
 import GuessButton from "./Components/GuessButton.jsx";
 import ScoreCounter from "./Components/ScoreCounter.jsx";
+import ResetButton from "./Components/ResetButton.jsx";
 
 function App() {
     
-    // DECLARING STATE VARIABLE FOR THE CURRENTLY PICKED FLAG
-    const [pickedFlag, setPickedFlag] = useState();
-    
-    // DECLARING STATE VARIABLE FOR COMPARING CURRENTLY PICKED FLAG WITH USER-CLICKED GUESS BUTTON
-    const [correctAnswer, setCorrectAnswer] = useState();
-    
-    // DECLARING STATE VARIABLE FOR SCORE COUNTER VARIABLE
-    const [scoreCounter, setScoreCounter] = useState(0)
-    
-    // DECLARING ARRAY OF FLAG IMAGE PATHS
-    const [flagArray, setFlagArray] = useState([
+    const initialArray = [
         "/albania.svg",
         "/andorra.svg",
         "/armenia.svg",
@@ -72,8 +63,28 @@ function App() {
         "/ukraine.svg",
         "/vatican.svg",
         "/wales.svg"
-    ])
+    ]
     
+    // DECLARING STATE VARIABLE FOR THE CURRENTLY PICKED FLAG
+    const [pickedFlag, setPickedFlag] = useState();
+    
+    // DECLARING STATE VARIABLE FOR COMPARING CURRENTLY PICKED FLAG WITH USER-CLICKED GUESS BUTTON
+    const [correctAnswer, setCorrectAnswer] = useState();
+    
+    // DECLARING STATE VARIABLE FOR SCORE COUNTER VARIABLE
+    const [scoreCounter, setScoreCounter] = useState(0)
+    
+    // DECLARING STATE VARIABLE FOR GAME STATUS
+    const [gameStarted, setGameStarted] = useState(false);
+    
+    // DECLARING STATE ARRAY OF FLAG IMAGE PATHS
+    const [flagArray, setFlagArray] = useState([...initialArray])
+    
+    // FUNCTION FOR STARTING GAME
+    function startGame() {
+        setGameStarted(true);
+    }
+        
     // FUNCTION FOR PICKING RANDOM FLAG AND REMOVING IT FROM THE ARRAY OF FLAGS, THEN SETTING FLAG STATE VARIABLE
     function pickRandomIndex() {
         setFlagArray((prevFlagArray) => {
@@ -114,11 +125,19 @@ function App() {
         pickRandomIndex();
     }
     
+    function reset() {
+        setPickedFlag("/european union.svg")
+        setCorrectAnswer()
+        setScoreCounter(0)
+        setGameStarted(false)
+        setFlagArray([...initialArray])
+    }
+    
     return (
         <>
-            <ScoreCounter score={scoreCounter} remaining={flagArray.length}></ScoreCounter>
+            <ScoreCounter score={scoreCounter} remaining={flagArray.length} gameStarted={gameStarted}></ScoreCounter>
             <FlagDisplay displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
-            <StartButton pickRandomIndex={pickRandomIndex}></StartButton>
+            <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex}></StartButton>
             <div className={"button-area"}>
                 <GuessButton buttonText={"albania"} onClick={compareUserPick}></GuessButton>
                 <GuessButton buttonText={"andorra"} onClick={compareUserPick}></GuessButton>
@@ -175,6 +194,7 @@ function App() {
                 <GuessButton buttonText={"vatican"} onClick={compareUserPick}></GuessButton>
                 <GuessButton buttonText={"wales"} onClick={compareUserPick}></GuessButton>
             </div>
+            <ResetButton reset={reset}></ResetButton>
         </>
     )
 }

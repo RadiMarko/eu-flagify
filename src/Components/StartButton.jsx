@@ -1,7 +1,7 @@
 export default function StartButton(props) {
     return (
         <button onClick={() => {
-            props.pickRandomIndex();
+            props.startGame(); props.pickRandomIndex();
         }}>START</button>
     )
 }
