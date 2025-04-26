@@ -3,6 +3,7 @@ import './App.css'
 import FlagDisplay from "./Components/FlagDisplay.jsx";
 import StartButton from "./Components/StartButton.jsx";
 import GuessButton from "./Components/GuessButton.jsx";
+import ScoreCounter from "./Components/ScoreCounter.jsx";
 
 function App() {
     
@@ -12,8 +13,8 @@ function App() {
     // DECLARING STATE VARIABLE FOR COMPARING CURRENTLY PICKED FLAG WITH USER-CLICKED GUESS BUTTON
     const [correctAnswer, setCorrectAnswer] = useState();
     
-    // DECLARING STATE VARIABLE SCORE COUNTER VARIABLE
-    const [scoreCounter, setScoreCounter] = useState(0);
+    // DECLARING STATE VARIABLE FOR SCORE COUNTER VARIABLE
+    const [scoreCounter, setScoreCounter] = useState(0)
     
     // DECLARING ARRAY OF FLAG IMAGE PATHS
     const [flagArray, setFlagArray] = useState([
@@ -106,6 +107,7 @@ function App() {
         console.log(`User picked: ${pickedText}`);
         if (pickedText === correctAnswer) {
             console.log("Correct answer!!!")
+            setScoreCounter((prevScoreCounter) => prevScoreCounter + 1)
         } else {
             console.log("Wrong answer!!!")
         }
@@ -114,8 +116,9 @@ function App() {
     
     return (
         <>
-            <FlagDisplay displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag} />
-            <StartButton pickRandomIndex={pickRandomIndex} />
+            <ScoreCounter score={scoreCounter} remaining={flagArray.length}></ScoreCounter>
+            <FlagDisplay displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
+            <StartButton pickRandomIndex={pickRandomIndex}></StartButton>
             <div className={"button-area"}>
                 <GuessButton buttonText={"albania"} onClick={compareUserPick}></GuessButton>
                 <GuessButton buttonText={"andorra"} onClick={compareUserPick}></GuessButton>
