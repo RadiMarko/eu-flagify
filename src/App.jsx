@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import FlagDisplay from "./Components/FlagDisplay.jsx";
-import Button from "./Components/Button.jsx";
+import StartButton from "./Components/StartButton.jsx";
 import GuessButton from "./Components/GuessButton.jsx";
 
 function App() {
@@ -11,6 +11,9 @@ function App() {
     
     // DECLARING STATE VARIABLE FOR COMPARING CURRENTLY PICKED FLAG WITH USER-CLICKED GUESS BUTTON
     const [correctAnswer, setCorrectAnswer] = useState();
+    
+    // DECLARING STATE VARIABLE SCORE COUNTER VARIABLE
+    const [scoreCounter, setScoreCounter] = useState(0);
     
     // DECLARING ARRAY OF FLAG IMAGE PATHS
     const [flagArray, setFlagArray] = useState([
@@ -99,65 +102,75 @@ function App() {
         })
     }
     
+    function compareUserPick(pickedText) {
+        console.log(`User picked: ${pickedText}`);
+        if (pickedText === correctAnswer) {
+            console.log("Correct answer!!!")
+        } else {
+            console.log("Wrong answer!!!")
+        }
+        pickRandomIndex();
+    }
+    
     return (
         <>
-            <FlagDisplay displayedFlag={pickedFlag} />
-            <Button pickRandomIndex={pickRandomIndex} />
-            <div>
-                <GuessButton buttonText={"albania"}></GuessButton>
-                <GuessButton buttonText={"andorra"}></GuessButton>
-                <GuessButton buttonText={"armenia"}></GuessButton>
-                <GuessButton buttonText={"austria"}></GuessButton>
-                <GuessButton buttonText={"azerbaijan"}></GuessButton>
-                <GuessButton buttonText={"belarus"}></GuessButton>
-                <GuessButton buttonText={"belgium"}></GuessButton>
-                <GuessButton buttonText={"bosnia and herzegovina"}></GuessButton>
-                <GuessButton buttonText={"bulgaria"}></GuessButton>
-                <GuessButton buttonText={"croatia"}></GuessButton>
-                <GuessButton buttonText={"cyprus"}></GuessButton>
-                <GuessButton buttonText={"czech republic"}></GuessButton>
-                <GuessButton buttonText={"denmark"}></GuessButton>
-                <GuessButton buttonText={"england"}></GuessButton>
-                <GuessButton buttonText={"estonia"}></GuessButton>
-                <GuessButton buttonText={"finland"}></GuessButton>
-                <GuessButton buttonText={"france"}></GuessButton>
-                <GuessButton buttonText={"georgia"}></GuessButton>
-                <GuessButton buttonText={"germany"}></GuessButton>
-                <GuessButton buttonText={"great britain"}></GuessButton>
-                <GuessButton buttonText={"greece"}></GuessButton>
-                <GuessButton buttonText={"greenland"}></GuessButton>
-                <GuessButton buttonText={"hungary"}></GuessButton>
-                <GuessButton buttonText={"iceland"}></GuessButton>
-                <GuessButton buttonText={"ireland"}></GuessButton>
-                <GuessButton buttonText={"italy"}></GuessButton>
-                <GuessButton buttonText={"kosovo"}></GuessButton>
-                <GuessButton buttonText={"latvia"}></GuessButton>
-                <GuessButton buttonText={"liechtenstein"}></GuessButton>
-                <GuessButton buttonText={"lithuania"}></GuessButton>
-                <GuessButton buttonText={"luxembourg"}></GuessButton>
-                <GuessButton buttonText={"malta"}></GuessButton>
-                <GuessButton buttonText={"moldova"}></GuessButton>
-                <GuessButton buttonText={"monaco"}></GuessButton>
-                <GuessButton buttonText={"montenegro"}></GuessButton>
-                <GuessButton buttonText={"netherlands"}></GuessButton>
-                <GuessButton buttonText={"north macedonia"}></GuessButton>
-                <GuessButton buttonText={"norway"}></GuessButton>
-                <GuessButton buttonText={"poland"}></GuessButton>
-                <GuessButton buttonText={"portugal"}></GuessButton>
-                <GuessButton buttonText={"romania"}></GuessButton>
-                <GuessButton buttonText={"russia"}></GuessButton>
-                <GuessButton buttonText={"san marino"}></GuessButton>
-                <GuessButton buttonText={"scotland"}></GuessButton>
-                <GuessButton buttonText={"serbia"}></GuessButton>
-                <GuessButton buttonText={"slovakia"}></GuessButton>
-                <GuessButton buttonText={"slovenia"}></GuessButton>
-                <GuessButton buttonText={"spain"}></GuessButton>
-                <GuessButton buttonText={"sweden"}></GuessButton>
-                <GuessButton buttonText={"switzerland"}></GuessButton>
-                <GuessButton buttonText={"turkey"}></GuessButton>
-                <GuessButton buttonText={"ukraine"}></GuessButton>
-                <GuessButton buttonText={"vatican"}></GuessButton>
-                <GuessButton buttonText={"wales"}></GuessButton>
+            <FlagDisplay displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag} />
+            <StartButton pickRandomIndex={pickRandomIndex} />
+            <div className={"button-area"}>
+                <GuessButton buttonText={"albania"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"andorra"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"armenia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"austria"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"azerbaijan"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"belarus"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"belgium"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"bosnia and herzegovina"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"bulgaria"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"croatia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"cyprus"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"czech republic"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"denmark"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"england"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"estonia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"finland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"france"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"georgia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"germany"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"great britain"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"greece"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"greenland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"hungary"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"iceland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"ireland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"italy"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"kosovo"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"latvia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"liechtenstein"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"lithuania"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"luxembourg"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"malta"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"moldova"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"monaco"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"montenegro"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"netherlands"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"north macedonia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"norway"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"poland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"portugal"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"romania"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"russia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"san marino"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"scotland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"serbia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"slovakia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"slovenia"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"spain"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"sweden"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"switzerland"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"turkey"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"ukraine"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"vatican"} onClick={compareUserPick}></GuessButton>
+                <GuessButton buttonText={"wales"} onClick={compareUserPick}></GuessButton>
             </div>
         </>
     )
