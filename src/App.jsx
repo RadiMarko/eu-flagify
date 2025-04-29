@@ -6,6 +6,7 @@ import GuessButton from "./Components/GuessButton.jsx";
 import ScoreCounter from "./Components/ScoreCounter.jsx";
 import ResetButton from "./Components/ResetButton.jsx";
 import Footer from "./Components/Footer.jsx";
+import ResultModal from "./Components/ResultModal.jsx";
 
 function App() {
     
@@ -77,6 +78,9 @@ function App() {
     
     // DECLARING STATE VARIABLE FOR GAME STATUS
     const [gameStarted, setGameStarted] = useState(false);
+    
+    // DECLARING STATE VARIABLE TO DETERMINE WHETHER MODAL SHOULD BE SHOWN OR NOT
+    const [modalShown, setModalShown] = useState(false);
     
     // DECLARING STATE VARIABLE FOR INDEX OF CLICKED GUESSBUTTON
     const [clickedIndex, setClickedIndex] = useState();
@@ -218,6 +222,7 @@ function App() {
                 <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
                 <ResetButton reset={reset} gameStarted={gameStarted}></ResetButton>
             </div>
+            <ResultModal modalShown={modalShown}></ResultModal>
             <div className={"button-area"}>
                 {cleanCountryNames.map((countryName, index) => (
                     <GuessButton 

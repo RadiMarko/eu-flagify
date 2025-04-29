@@ -1,5 +1,8 @@
-export default function ResultModal() {
+export default function ResultModal(props) {
     return (
-        <div className="result-modal"></div>
+        <div className={props.modalShown ? "result-modal-shown" : "result-modal-hidden"}>
+            <h2>Final score: 27 (50%)</h2>
+            <button className="button-on" style={{width: "10rem", height: "4rem", fontSize: "1.5rem"}}>Close</button>
+        </div>
     )
 }
