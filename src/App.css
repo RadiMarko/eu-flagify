@@ -14,7 +14,18 @@
   align-items: center;
 }
 
+.flag-display-default {
+  width: 16rem;
+  height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flag-display {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   width: 16rem;
   height: 12rem;
   display: flex;
@@ -44,7 +55,7 @@
 }
 
 .button-on {
-  background-color: #ffffff;
+  background-color: #7dbfd8;
 }
 
 .button-off {

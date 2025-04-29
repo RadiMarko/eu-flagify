@@ -221,7 +221,7 @@ function App() {
     return (
         <div className="game-area">
             <ScoreCounter score={scoreCounter} remaining={flagArray.length} gameStarted={gameStarted}></ScoreCounter>
-            <FlagDisplay displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
+            <FlagDisplay gameStarted={gameStarted} displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
             <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
             <div className={"button-area"}>
                 {cleanCountryNames.map((countryName, index) => (
