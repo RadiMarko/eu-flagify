@@ -176,7 +176,7 @@ function App() {
     // FUNCTION FOR COMPARING USER PICK TO CORRECT ANSWER AND INCREASING SCORE
     function compareUserPick(pickedText) {
         console.log(`User picked: ${pickedText}`);
-        if (pickedText === correctAnswer) {
+        if (pickedText.toLowerCase() === correctAnswer) {
             console.log("Correct answer!!!")
             setScoreCounter((prevScoreCounter) => prevScoreCounter + 1)
         } else {
@@ -201,7 +201,7 @@ function App() {
     }
     
     return (
-        <>
+        <div className="game-area">
             <ScoreCounter score={scoreCounter} remaining={flagArray.length} gameStarted={gameStarted}></ScoreCounter>
             <FlagDisplay displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
             <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
@@ -209,14 +209,14 @@ function App() {
                 {cleanCountryNames.map((countryName, index) => (
                     <GuessButton 
                         key={index} 
-                        buttonText={countryName} 
+                        buttonText={countryName.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} 
                         onClick={compareUserPick} 
                         gameStarted={gameStarted}>
                     </GuessButton>
                 ))}
             </div>
             <ResetButton reset={reset} gameStarted={gameStarted}></ResetButton>
-        </>
+        </div>
     )
 }
 
