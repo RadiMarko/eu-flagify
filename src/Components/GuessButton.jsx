@@ -1,5 +1,5 @@
 export default function GuessButton(props) {
     return (
-        <button onClick={() => props.onClick(props.buttonText)}>{props.buttonText}</button>
+        <button className={props.gameStarted ? "button-on" : "button-off"} onClick={() => props.onClick(props.buttonText)}>{props.buttonText}</button>
     );
 }

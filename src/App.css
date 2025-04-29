@@ -4,6 +4,7 @@
   padding: 2rem;
   text-align: center;
   background-color: #cecece;
+  user-select: none;
 }
 
 .logo {
@@ -45,4 +46,13 @@
 img {
   width: 6rem;
   height: auto;
+}
+
+.button-on {
+  background-color: #ffffff;
+}
+
+.button-off {
+  background-color: #8e8e8e;
+  pointer-events: none;
 }
