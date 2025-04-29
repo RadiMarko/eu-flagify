@@ -5,6 +5,7 @@ import StartButton from "./Components/StartButton.jsx";
 import GuessButton from "./Components/GuessButton.jsx";
 import ScoreCounter from "./Components/ScoreCounter.jsx";
 import ResetButton from "./Components/ResetButton.jsx";
+import Footer from "./Components/Footer.jsx";
 
 function App() {
     
@@ -213,13 +214,23 @@ function App() {
         <div className="game-area">
             <ScoreCounter score={scoreCounter} remaining={flagArray.length} gameStarted={gameStarted}></ScoreCounter>
             <FlagDisplay gameStarted={gameStarted} displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
-            <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
+            <div className="main-buttons">
+                <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
+                <ResetButton reset={reset} gameStarted={gameStarted}></ResetButton>
+            </div>
             <div className={"button-area"}>
                 {cleanCountryNames.map((countryName, index) => (
                     <GuessButton 
                         key={index} 
                         index={index}
-                        buttonText={countryName.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} 
+                        buttonText={countryName.split(" ").map(word =>
+                        {
+                            if (word === "and") {
+                                return word;
+                            } else {
+                                return word.charAt(0).toUpperCase() + word.slice(1);
+                            }
+                        }).join(" ")} 
                         compareUserPick={compareUserPick} 
                         gameStarted={gameStarted} 
                         clicked={clickedIndex === index}
@@ -228,7 +239,7 @@ function App() {
                     </GuessButton>
                 ))}
             </div>
-            <ResetButton reset={reset} gameStarted={gameStarted}></ResetButton>
+            <Footer></Footer>
         </div>
     )
 }

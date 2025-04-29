@@ -1,9 +1,6 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-  background-color: #cecece;
   user-select: none;
   font-family: Rubik, Arial, Helvetica, sans-serif;
 }
@@ -14,8 +11,15 @@
   align-items: center;
 }
 
+h3 {
+  margin-top: 0;
+}
+
 .flag-display-default {
-  width: 16rem;
+  background-color: #b3b3b3;
+  border-radius: 2rem;
+  border: 0.1rem solid black;
+  width: 15rem;
   height: 12rem;
   display: flex;
   justify-content: center;
@@ -23,10 +27,13 @@
 }
 
 .flag-display {
+  background-color: #7dbfd8;
+  border-radius: 2rem;
+  border: 0.1rem solid black;
   position: sticky;
   top: 0;
   z-index: 1;
-  width: 16rem;
+  width: 15rem;
   height: 12rem;
   display: flex;
   justify-content: center;
@@ -38,7 +45,16 @@
   height: auto;
 }
 
+.main-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
 .start-button-container {
+  margin-top: 2rem;
+}
+
+.reset-button-container {
   margin-top: 2rem;
 }
 
@@ -50,8 +66,8 @@
   margin-bottom: 2rem;
 }
 
-.reset-button-container {
-  margin-bottom: 2rem;
+button:not(.button-correct):not(.button-wrong):hover {
+  background-color: #2a88ae;
 }
 
 .button-on {
@@ -59,7 +75,7 @@
 }
 
 .button-off {
-  background-color: #8e8e8e;
+  background-color: #b3b3b3;
   pointer-events: none;
 }
 
@@ -69,4 +85,9 @@
 
 .button-wrong {
   background-color: #ac0900;
+}
+
+.footer {
+  display: flex;
+  gap: 10rem;
 }
