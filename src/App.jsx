@@ -77,6 +77,12 @@ function App() {
     // DECLARING STATE VARIABLE FOR GAME STATUS
     const [gameStarted, setGameStarted] = useState(false);
     
+    // DECLARING STATE VARIABLE FOR INDEX OF CLICKED GUESSBUTTON
+    const [clickedIndex, setClickedIndex] = useState();
+    
+    // DECLARING STATE VARIABLE TO FIND OUT WHETHER CLICK WAS CORRECT OR NOT
+    const [wasAnswerCorrect, setWasAnswerCorrect] = useState();
+    
     // DECLARING STATE ARRAY OF FLAG IMAGE PATHS
     const [flagArray, setFlagArray] = useState([...initialArray])
     
@@ -174,15 +180,27 @@ function App() {
     }
     
     // FUNCTION FOR COMPARING USER PICK TO CORRECT ANSWER AND INCREASING SCORE
-    function compareUserPick(pickedText) {
+    function compareUserPick(pickedText, index) {
         console.log(`User picked: ${pickedText}`);
         if (pickedText.toLowerCase() === correctAnswer) {
             console.log("Correct answer!!!")
             setScoreCounter((prevScoreCounter) => prevScoreCounter + 1)
         } else {
             console.log("Wrong answer!!!")
+            setClickedIndex(index);
         }
+
+        // Setting wasAnswerCorrect and also clicked index state variable to the index of the clicked GuessButton
+        setWasAnswerCorrect(pickedText.toLowerCase() === correctAnswer)
+        setClickedIndex(index);
         
+        // Setting wasAnswerCorrect and ClickedIndex to null after a brief time
+        setTimeout(() => {
+            setClickedIndex(null);
+            setWasAnswerCorrect(null);
+        }, 300)
+        
+        // Checking whether next flag should be picked or the game should restart if array is empty
         if (flagArray.length > 0) {
             pickRandomIndex();
         } else {
@@ -209,9 +227,13 @@ function App() {
                 {cleanCountryNames.map((countryName, index) => (
                     <GuessButton 
                         key={index} 
+                        index={index}
                         buttonText={countryName.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} 
-                        onClick={compareUserPick} 
-                        gameStarted={gameStarted}>
+                        compareUserPick={compareUserPick} 
+                        gameStarted={gameStarted} 
+                        clicked={clickedIndex === index}
+                        wasCorrect={wasAnswerCorrect}
+                    >
                     </GuessButton>
                 ))}
             </div>

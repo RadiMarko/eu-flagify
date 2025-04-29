@@ -27,6 +27,22 @@
   height: auto;
 }
 
+.start-button-container {
+  margin-top: 2rem;
+}
+
+.button-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.reset-button-container {
+  margin-bottom: 2rem;
+}
+
 .button-on {
   background-color: #ffffff;
 }
@@ -34,4 +50,12 @@
 .button-off {
   background-color: #8e8e8e;
   pointer-events: none;
+}
+
+.button-correct {
+  background-color: #21a600;
+}
+
+.button-wrong {
+  background-color: #ac0900;
 }
