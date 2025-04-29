@@ -158,14 +158,9 @@ function App() {
             const randomIndex = Math.floor(Math.random() * flagArray.length);
             const selectedFlag = prevFlagArray[randomIndex];
             
-            console.log(`Index picked: ${randomIndex}`);
-            console.log(`Flag picked: ${selectedFlag}`);
-            
             // Removing selected flag from the array
             const newFlagArray = [...prevFlagArray];
             newFlagArray.splice(randomIndex, 1);
-            
-            console.log(`New flag array with a length of ${newFlagArray.length} (about to be set):\n${newFlagArray}`);
             
             // Setting the state variable of the currently selected flag
             setPickedFlag(selectedFlag)
@@ -173,7 +168,6 @@ function App() {
             // Setting the state variable of the correct answer to be compared to user-selected answer
             const cleanCountryName = selectedFlag.replace("/", "").replace(".svg", "")
             setCorrectAnswer(cleanCountryName)
-            console.log(`CORRECT ANSWER TO BE SET: ${cleanCountryName}`)
             
             return newFlagArray;
         })
@@ -181,12 +175,9 @@ function App() {
     
     // FUNCTION FOR COMPARING USER PICK TO CORRECT ANSWER AND INCREASING SCORE
     function compareUserPick(pickedText, index) {
-        console.log(`User picked: ${pickedText}`);
         if (pickedText.toLowerCase() === correctAnswer) {
-            console.log("Correct answer!!!")
             setScoreCounter((prevScoreCounter) => prevScoreCounter + 1)
         } else {
-            console.log("Wrong answer!!!")
             setClickedIndex(index);
         }
 
