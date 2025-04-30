@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 h3 {
@@ -17,7 +18,7 @@ h3 {
 
 .flag-display-default {
   background-color: #b3b3b3;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: 0.1rem solid black;
   width: 15rem;
   height: 12rem;
@@ -28,7 +29,7 @@ h3 {
 
 .flag-display {
   background-color: #7dbfd8;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: 0.1rem solid black;
   position: sticky;
   top: 0;
@@ -63,7 +64,6 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 button:not(.button-correct):not(.button-wrong):hover {
@@ -89,7 +89,9 @@ button:not(.button-correct):not(.button-wrong):hover {
 
 .footer {
   display: flex;
-  gap: 10rem;
+  gap: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .result-modal-hidden {

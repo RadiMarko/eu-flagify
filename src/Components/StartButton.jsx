@@ -4,7 +4,7 @@ export default function StartButton(props) {
             <button 
                 className={`main-button ${props.gameStarted ? "button-off" : "button-on"}`}
                 onClick={() => {props.startGame(); props.pickRandomIndex();}}
-                style={{width: "10rem", height: "4rem", fontSize: "1.5rem"}}>
+                style={{width: "10rem", height: "4.2rem", fontSize: "1.5rem"}}>
                 START
             </button>
         </div>
