@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function Footer(props) {
 
     function getYear() {
         const date = new Date();
@@ -9,6 +9,7 @@ export default function Footer() {
         <div className="footer">
             <p>RadiMarko</p>
             <p>{getYear()}</p>
+            <button style={{color:"white"}} onClick={() => {props.toggleModal()}}>TEST MODAL</button>
         </div>
     )
 }

@@ -205,6 +205,11 @@ function App() {
 
     }
     
+    // FUNCTION FOR TOGGLING HIGH SCORE MODAL AT GAME'S END OR WHEN CLICKING RESTART BUTTON
+    function toggleModal() {
+        setModalShown(prevModalShown => !prevModalShown);
+    }
+    
     // FUNCTION TO RESET GAME
     function reset() {
         setPickedFlag("/european union.svg")
@@ -244,7 +249,7 @@ function App() {
                     </GuessButton>
                 ))}
             </div>
-            <Footer></Footer>
+            <Footer toggleModal={toggleModal}></Footer>
         </div>
     )
 }
