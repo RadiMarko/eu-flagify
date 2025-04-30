@@ -227,7 +227,7 @@ function App() {
                 <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
                 <ResetButton reset={reset} gameStarted={gameStarted}></ResetButton>
             </div>
-            <ResultModal modalShown={modalShown}></ResultModal>
+            <ResultModal modalShown={modalShown} toggleModal={toggleModal}></ResultModal>
             <div className={"button-area"}>
                 {cleanCountryNames.map((countryName, index) => (
                     <GuessButton 
