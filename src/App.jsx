@@ -200,14 +200,21 @@ function App() {
         if (flagArray.length > 0) {
             pickRandomIndex();
         } else {
-            reset();
+            toggleModal();
         }
 
     }
     
     // FUNCTION FOR TOGGLING HIGH SCORE MODAL AT GAME'S END OR WHEN CLICKING RESTART BUTTON
     function toggleModal() {
-        setModalShown(prevModalShown => !prevModalShown);
+        // Reset game if modal is currently shown, then toggle
+        setModalShown(prevModalShown => {
+            if (prevModalShown) {
+                reset();
+            }
+            
+            return !prevModalShown;
+        })
     }
     
     // FUNCTION TO RESET GAME
@@ -225,9 +232,9 @@ function App() {
             <FlagDisplay gameStarted={gameStarted} displayedFlag={flagArray.length === 54 ? "/european union.svg" : pickedFlag}></FlagDisplay>
             <div className="main-buttons">
                 <StartButton startGame={startGame} pickRandomIndex={pickRandomIndex} gameStarted={gameStarted}></StartButton>
-                <ResetButton reset={reset} gameStarted={gameStarted}></ResetButton>
+                <ResetButton toggleModal={toggleModal} gameStarted={gameStarted}></ResetButton>
             </div>
-            <ResultModal modalShown={modalShown} toggleModal={toggleModal}></ResultModal>
+            <ResultModal score={scoreCounter} modalShown={modalShown} toggleModal={toggleModal} reset={reset}></ResultModal>
             <div className={"button-area"}>
                 {cleanCountryNames.map((countryName, index) => (
                     <GuessButton 
@@ -249,7 +256,7 @@ function App() {
                     </GuessButton>
                 ))}
             </div>
-            <Footer toggleModal={toggleModal}></Footer>
+            <Footer></Footer>
         </div>
     )
 }
