@@ -183,6 +183,7 @@ function App() {
         if (pickedText.toLowerCase() === correctAnswer) {
             setScoreCounter((prevScoreCounter) => prevScoreCounter + 1)
         } else {
+            shakeDiv();
             setClickedIndex(index);
         }
 
@@ -224,6 +225,16 @@ function App() {
         setScoreCounter(0)
         setGameStarted(false)
         setFlagArray([...initialArray])
+    }
+    
+    // FUNCTION TO SHAKE IMAGE DIV WHEN THE ANSWER IS WRONG
+    
+    function shakeDiv() {
+        const div = document.querySelector(".flag-display");
+        div.classList.add("shake");
+        setTimeout(() => {
+            div.classList.remove("shake");
+        }, 500)
     }
     
     return (
